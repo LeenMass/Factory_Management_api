@@ -1,7 +1,24 @@
-const Emplyees = require("../Modules/employeesModule")
+const Employees = require("../Modules/employeesModule")
 
 const getAllEmployess = () => {
-    return Emplyees.find({})
+    return Employees.find({})
 }
+const addEmployee = (employee) => {
+    const emp = new Employees(employee)
+    return emp.save()
+}
+const getEmployeeById = (id) => {
+    return Employees.findById(id);
+};
 
-module.exports = { getAllEmployess }
+// // Update
+// const updatePerson = (id, obj) => {
+//     return Person.findByIdAndUpdate(id, obj);
+// };
+
+// // Delete
+// const deletePerson = (id) => {
+//     return Person.findByIdAndDelete(id);
+// };
+
+module.exports = { getAllEmployess, addEmployee, getEmployeeById }
