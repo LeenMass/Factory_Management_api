@@ -23,7 +23,9 @@ router.get("/:id", async (req, res) => {
     }
 })
 router.post("/", async (req, res) => {
+
     const department = req.body;
+    console.log(req.body)
     const result = await departmentService.addNewDepartment(department)
     res.json(result)
 })

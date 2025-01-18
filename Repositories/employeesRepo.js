@@ -1,7 +1,7 @@
 const Employees = require("../Modules/employeesModule")
 
 const getAllEmployess = () => {
-    return Employees.find({})
+    return Employees.find()
 }
 const addEmployee = (employee) => {
     const emp = new Employees(employee)
