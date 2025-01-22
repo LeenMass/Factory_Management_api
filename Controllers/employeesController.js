@@ -38,4 +38,30 @@ router.get("/:id", async (req, res) => {
     }
 })
 
+router.put("/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const obj = req.body;
+        console.log(obj)
+        const result = await employeesService.updateEmployeeData(id, obj)
+
+        res.json(result)
+    }
+    catch (err) {
+        res.status(500).json(err)
+    }
+})
+router.delete("/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const result = await employeesService.deleteEmployeeData(id)
+
+        res.json(result)
+    }
+    catch (err) {
+        res.status(500).json(err)
+    }
+})
+
 module.exports = router

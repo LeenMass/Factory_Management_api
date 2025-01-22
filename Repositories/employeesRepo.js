@@ -11,14 +11,13 @@ const getEmployeeById = (id) => {
     return Employees.findById(id);
 };
 
-// // Update
-// const updatePerson = (id, obj) => {
-//     return Person.findByIdAndUpdate(id, obj);
-// };
 
-// // Delete
-// const deletePerson = (id) => {
-//     return Person.findByIdAndDelete(id);
-// };
+const updateEmployee = (id, obj) => {
+    return Employees.findByIdAndUpdate(id, obj);
+};
 
-module.exports = { getAllEmployess, addEmployee, getEmployeeById }
+const deleteEmployee = (id) => {
+    return Employees.findByIdAndDelete(id);
+};
+
+module.exports = { getAllEmployess, addEmployee, getEmployeeById, updateEmployee, deleteEmployee }
