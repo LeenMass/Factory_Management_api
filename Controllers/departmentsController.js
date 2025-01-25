@@ -29,5 +29,13 @@ router.post("/", async (req, res) => {
     const result = await departmentService.addNewDepartment(department)
     res.json(result)
 })
+router.put("/:id", async (req, res) => {
+    const { id } = req.params
+    const department = req.body;
+    console.log(req.body)
+    const result = await departmentService.updateDepartmentData(id, department)
+    res.json(result)
+})
+
 
 module.exports = router

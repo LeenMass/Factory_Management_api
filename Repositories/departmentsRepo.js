@@ -10,4 +10,7 @@ const addDepartment = (department) => {
     const dep = new Departments(department)
     return dep.save()
 }
-module.exports = { getAllDepartments, addDepartment, getDepartmentById }
+const updateDepartment = (id, obj) => {
+    return Departments.findByIdAndUpdate(id, obj);
+};
+module.exports = { getAllDepartments, addDepartment, getDepartmentById, updateDepartment }

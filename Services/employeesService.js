@@ -1,8 +1,8 @@
 const employeesRepo = require("../Repositories/employeesRepo")
 
-const getEmployees = async () => {
+const getEmployees = async (filters) => {
     try {
-        const employees = await employeesRepo.getAllEmployess()
+        const employees = await employeesRepo.getAllEmployess(filters)
             .populate('department_id', 'name')
             .lean();
 
