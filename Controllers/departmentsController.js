@@ -36,6 +36,11 @@ router.put("/:id", async (req, res) => {
     const result = await departmentService.updateDepartmentData(id, department)
     res.json(result)
 })
+router.delete("/:id", async (req, res) => {
+    const { id } = req.params
+    const result = await departmentService.deleteDeapartmentData(id)
+    res.json(result)
+})
 
 
 module.exports = router

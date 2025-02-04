@@ -5,19 +5,27 @@ const getEmployees = async (filters) => {
         const employees = await employeesRepo.getAllEmployess(filters)
             .populate('department_id', 'name')
             .lean();
+        if (employees.length > 0) {
+            const employesFinalData = employees.map(employee => ({
+                id: employee._id,
+                department_id: employee.department_id && employee.department_id._id ? employee.department_id._id : "No Department",
+                Full_Name: employee.first_name && employee.last_name ? employee.first_name + " " + employee.last_name : "No employee",
+                Department: employee.department_id && employee.department_id.name ? employee.department_id.name : 'No Department'
+            }));
+            return employesFinalData;
+        }
+        else {
+            return "no data found"
 
-        const employesFinalData = employees.map(employee => ({
-            id: employee._id,
-            department_id: employee.department_id._id,
-            Full_Name: employee.first_name + " " + employee.last_name,
-            Department: employee.department_id ? employee.department_id.name : 'No Department'
-        }));
-        return employesFinalData;
-    } catch (err) {
-        return err;
+        }
     }
 
+    catch (err) {
+        return err;
+    }
 }
+
+
 const addEmployeeToDB = (employee) => {
     return employeesRepo.addEmployee(employee)
 }

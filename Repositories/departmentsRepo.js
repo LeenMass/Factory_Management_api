@@ -13,4 +13,7 @@ const addDepartment = (department) => {
 const updateDepartment = (id, obj) => {
     return Departments.findByIdAndUpdate(id, obj);
 };
-module.exports = { getAllDepartments, addDepartment, getDepartmentById, updateDepartment }
+const deleteDepartment = (id) => {
+    return Departments.findByIdAndDelete(id);
+};
+module.exports = { getAllDepartments, addDepartment, getDepartmentById, updateDepartment, deleteDepartment }
