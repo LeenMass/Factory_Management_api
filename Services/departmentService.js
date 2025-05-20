@@ -38,9 +38,7 @@ const getDepartments = async () => {
 const addNewDepartment = (department) => {
     return Departments.addDepartment(department)
 }
-const addEmployeeToDepartment = () => {
 
-}
 const getDepartment = (id) => {
     return Departments.getDepartmentById(id)
 
