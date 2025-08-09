@@ -1,6 +1,10 @@
 const shiftsRepo = require("../Repositories/shiftsRepo")
+const Employees = require("../Modules/employeesModule")
+
 const getShifts = async (filters) => {
-    const shifts = await shiftsRepo.getAllShifts(filters).populate('employees')
+    const shiftsQuery = shiftsRepo.getAllShifts(filters);
+
+    const shifts = await shiftsQuery.populate('employees')
         .lean();
     const shiftData = shifts.map((shift) => {
         const employesInshift = shift.employees.map((emp) => { return { id: emp._id, name: emp.first_name + " " + emp.last_name } })
@@ -13,8 +17,14 @@ const getShifts = async (filters) => {
 }
 
 
-const addShiftToDB = (shift) => {
-    return shiftsRepo.addShift(shift)
+const addShiftToDB = async (shift) => {
+    const result = await shiftsRepo.addShift(shift)
+    await Employees.updateMany(
+        { _id: { $in: shift.employees } },
+        { $addToSet: { shifts: result._id } }
+    );
+
+    return result;
 }
 
 const getShift = (id) => {

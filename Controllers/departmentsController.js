@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
         res.json(result)
     }
     catch (err) {
-        res.status(500).json(err)
+        res.status(500).json({ error: err.message || err });
     }
 })
 router.get("/:id", async (req, res) => {
@@ -23,23 +23,39 @@ router.get("/:id", async (req, res) => {
     }
 })
 router.post("/", async (req, res) => {
-
-    const department = req.body;
-    console.log(req.body)
-    const result = await departmentService.addNewDepartment(department)
-    res.json(result)
+    try {
+        const department = req.body;
+        console.log(req.body)
+        const result = await departmentService.addNewDepartment(department)
+        res.json(result)
+    }
+    catch (err) {
+        res.status(500).json(err)
+    }
 })
 router.put("/:id", async (req, res) => {
-    const { id } = req.params
-    const department = req.body;
-    console.log(req.body)
-    const result = await departmentService.updateDepartmentData(id, department)
-    res.json(result)
+    try {
+        const { id } = req.params
+        const department = req.body;
+        console.log(req.body)
+        const result = await departmentService.updateDepartmentData(id, department)
+        res.json(result)
+    }
+
+    catch (err) {
+        res.status(500).json(err)
+    }
 })
 router.delete("/:id", async (req, res) => {
-    const { id } = req.params
-    const result = await departmentService.deleteDeapartmentData(id)
-    res.json(result)
+    try {
+        const { id } = req.params
+        const result = await departmentService.deleteDeapartmentData(id)
+        res.json(result)
+    }
+
+    catch (err) {
+        res.status(500).json(err)
+    }
 })
 
 

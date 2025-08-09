@@ -2,31 +2,21 @@ const employeesRepo = require("../Repositories/employeesRepo")
 
 const getEmployees = async (filters) => {
     try {
-        const employees = await employeesRepo.getAllEmployess(filters)
-            .populate('department_id', 'name')
-            .populate('shifts', '_id')
-            .lean()
+        const employeesData = employeesRepo.getAllEmployess(filters)
+        const employees = await employeesData.populate('shifts', 'date starting_hour ending_hour')
+            .populate('department_id', 'name');
+
 
         if (employees.length > 0) {
 
-            const employesFinalData = employees?.map(employee => {
-                console.log(employee)
-
-                const x = employee?.shifts.map(shift => {
-                    return {
-                        id: shift._id,
-                    }
-                })
-
-
-
-
+            const employesFinalData = employees.map(employee => {
                 return {
                     id: employee._id,
                     department_id: employee.department_id && employee.department_id._id ? employee.department_id._id : "No Department",
-                    Full_Name: employee.first_name && employee.last_name ? employee.first_name + " " + employee.last_name : "No employee",
+                    name: employee.first_name && employee.last_name ? employee.first_name + " " + employee.last_name : "No employee",
                     Department: employee.department_id && employee.department_id.name ? employee.department_id.name : 'No Department',
-                    shifts: x
+                    shifts: employee.shifts ? employee.shifts : []
+
                 }
             })
             return employesFinalData;
@@ -51,9 +41,17 @@ const addEmployeeToDB = (employee) => {
     return employeesRepo.addEmployee(employee)
 }
 
-const getEmployee = (id) => {
-    return employeesRepo.getEmployeeById(id)
-
+const getEmployee = async (id) => {
+    try {
+        const res = await employeesRepo.getEmployeeById(id).populate('shifts', 'date starting_hour ending_hour')
+            .populate('department_id', 'name');
+        console.log(res)
+        const finalEmployeeData = { id: res.id, first_name: res.first_name, last_name: res.last_name, start_work_year: res.start_work_year, department_id: res.department_id._id, departmentName: res.department_id.name, shifts: res.shifts }
+        return finalEmployeeData
+    }
+    catch (err) {
+        console.log(err)
+    }
 }
 const updateEmployeeData = (id, obj) => {
     return employeesRepo.updateEmployee(id, obj)

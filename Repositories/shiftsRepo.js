@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 
 const Shifts = require("../Modules/shiftsModule");
 
@@ -5,11 +6,13 @@ const getAllShifts = (filters) => {
     return Shifts.find(filters)
 }
 const getShiftById = (id) => {
-    return Shiftsifts.findById(id);
+    return Shifts.findById(id);
 };
 const addShift = (shiftObj) => {
-    const shift = new Shifts(shiftObj)
-    return shift.save()
+    shiftObj.employees = shiftObj.employees.map(id => String(id));
+    const shift = new Shifts(shiftObj);
+    return shift.save();
+
 }
 const updateShift = (id, obj) => {
     return Shifts.findByIdAndUpdate(id, obj);
