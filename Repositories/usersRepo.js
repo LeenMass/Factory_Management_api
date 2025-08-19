@@ -10,7 +10,7 @@ const getUserById = (id) => {
 };
 const addUser = (userObj) => {
     const user = new Users(userObj)
-    return emp.save()
+    return user.save()
 
 }
 
