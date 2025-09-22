@@ -1,5 +1,6 @@
 const shiftsRepo = require("../Repositories/shiftsRepo")
 const Employees = require("../Modules/employeesModule")
+const shiftsModule = require("../Modules/shiftsModule")
 
 const getShifts = async (filters) => {
     const shiftsQuery = shiftsRepo.getAllShifts(filters);
@@ -7,7 +8,11 @@ const getShifts = async (filters) => {
     const shifts = await shiftsQuery.populate('employees')
         .lean();
     const shiftData = shifts.map((shift) => {
-        const employesInshift = shift.employees.map((emp) => { return { id: emp._id, name: emp.first_name + " " + emp.last_name } })
+        const employesInshift = shift.employees.map((emp) => {
+            return {
+                id: emp._id, name: `${emp.first_name} ${emp.last_name}`
+            }
+        })
         return {
             id: shift._id, date: shift.date, starting_hour: shift.starting_hour, ending_hour: shift.ending_hour, employees: employesInshift
 
@@ -17,14 +22,9 @@ const getShifts = async (filters) => {
 }
 
 
-const addShiftToDB = async (shift) => {
-    const result = await shiftsRepo.addShift(shift)
-    await Employees.updateMany(
-        { _id: { $in: shift.employees } },
-        { $addToSet: { shifts: result._id } }
-    );
+const addShiftToDB = (shift) => {
+    return shiftsRepo.addShift(shift)
 
-    return result;
 }
 
 const getShift = (id) => {
@@ -35,4 +35,32 @@ const updateShiftData = (id, obj) => {
     return shiftsRepo.updateShift(id, obj)
 }
 
-module.exports = { getShifts, addShiftToDB, getShift, updateShiftData }
+const addEmployeesToshift = async (data) => {
+    try {
+        if (!Array.isArray(data.employees) || data.employees.length === 0) {
+            throw new Error("employees must be a non empty array");
+        }
+
+        const result = await shiftsModule.updateOne(
+            { _id: data.shift_id },
+            { $addToSet: { employees: { $each: data.employees } } }
+        );
+        return result;
+    } catch (error) {
+        console.error("Error adding employees to shift:", error);
+        throw error;
+    }
+}
+const removeEmployeeFromShift = async (employeesShifts) => {
+    const shiftsDecuments = employeesShifts.map(({ shift_id, employees }) =>
+        shiftsModule.updateOne(
+            { _id: shift_id },
+            { $pull: { employees: { $in: employees } } }
+        )
+    );
+    const results = await Promise.all(shiftsDecuments);
+    return results;
+}
+
+
+module.exports = { getShifts, addShiftToDB, getShift, updateShiftData, removeEmployeeFromShift, addEmployeesToshift }

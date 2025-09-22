@@ -37,6 +37,26 @@ router.put("/:id", async (req, res) => {
     const result = await shiftService.updateShiftData(id, shift)
     res.json(result)
 })
+router.post("/addingEmployeesToShift", async (req, res) => {
+    const data = req.body;
+    console.log(data)
+    const result = await shiftService.addEmployeesToshift(data)
+    res.json(result)
+})
+router.post("/employeesShift", async (req, res) => {
+    const employeesShifts = req.body;
+    console.log(employeesShifts)
+    try {
+        if (!Array.isArray(employeesShifts) || employeesShifts.length === 0) {
+            return res.status(400).json({ error: "employees Sgifts is required and must be an array" });
+        }
+        const result = await shiftService.removeEmployeeFromShift(employeesShifts);
+        res.json(result);
+    } catch (error) {
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+
+});
 
 
 

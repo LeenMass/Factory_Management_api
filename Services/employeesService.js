@@ -1,25 +1,28 @@
 const employeesRepo = require("../Repositories/employeesRepo")
+const shiftsRepo = require("../Repositories/shiftsRepo")
 
 const getEmployees = async (filters) => {
     try {
         const employeesData = employeesRepo.getAllEmployess(filters)
-        const employees = await employeesData.populate('shifts', 'date starting_hour ending_hour')
+        const employees = await employeesData
             .populate('department_id', 'name');
-
 
         if (employees.length > 0) {
 
-            const employesFinalData = employees.map(employee => {
-                return {
-                    id: employee._id,
-                    department_id: employee.department_id && employee.department_id._id ? employee.department_id._id : "No Department",
-                    name: employee.first_name && employee.last_name ? employee.first_name + " " + employee.last_name : "No employee",
-                    Department: employee.department_id && employee.department_id.name ? employee.department_id.name : 'No Department',
-                    shifts: employee.shifts ? employee.shifts : []
-
-                }
-            })
-            return employesFinalData;
+            const employeesFinalData = await Promise.all(
+                employees.map(async (employee) => {
+                    const shifts = await shiftsRepo.getAllShifts({ employees: employee._id })
+                        .select('date starting_hour ending_hour');
+                    return {
+                        id: employee._id,
+                        department_id: employee.department_id?._id || "No Department",
+                        name: (employee.first_name && employee.last_name) ? `${employee.first_name} ${employee.last_name}` : "No employee",
+                        Department: employee.department_id?.name || 'No Department',
+                        shifts: shifts || []
+                    };
+                })
+            );
+            return employeesFinalData;
 
         }
         else {
@@ -43,11 +46,8 @@ const addEmployeeToDB = (employee) => {
 
 const getEmployee = async (id) => {
     try {
-        const res = await employeesRepo.getEmployeeById(id).populate('shifts', 'date starting_hour ending_hour')
-            .populate('department_id', 'name');
-        console.log(res)
-        const finalEmployeeData = { id: res.id, first_name: res.first_name, last_name: res.last_name, start_work_year: res.start_work_year, department_id: res.department_id._id, departmentName: res.department_id.name, shifts: res.shifts }
-        return finalEmployeeData
+        const employee = await getEmployees({ _id: id })
+        return employee[0]
     }
     catch (err) {
         console.log(err)

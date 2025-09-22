@@ -26,7 +26,7 @@ router.post("/", async (req, res) => {
     res.cookie('token', token, {
         httpOnly: true,
         sameSite: 'Lax',
-        maxAge: 3600000
+        maxAge: 604800000
     });
 
     res.json({ message: "Login successful", full_name: findUser.name });

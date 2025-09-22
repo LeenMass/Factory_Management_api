@@ -9,7 +9,6 @@ const getShiftById = (id) => {
     return Shifts.findById(id);
 };
 const addShift = (shiftObj) => {
-    shiftObj.employees = shiftObj.employees.map(id => String(id));
     const shift = new Shifts(shiftObj);
     return shift.save();
 
