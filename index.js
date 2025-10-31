@@ -11,6 +11,7 @@ const shiftsController = require("./Controllers/shiftsController")
 const usersController = require("./Controllers/usersController")
 const logInController = require("./Controllers/loginController")
 const logOutController = require("./Controllers/logout")
+const userActions = require("./Actions/userAction")
 const authenticationToken = require("./auth")
 const auth = require("./Controllers/authin")
 
@@ -28,13 +29,17 @@ app.use((req, res, next) => {
     res.setHeader("Cache-Control", "no-store");
     next();
 });
-app.use("/employees", authenticationToken, employeesController)
-app.use("/departments", authenticationToken, departmentController)
-app.use("/shifts", authenticationToken, shiftsController)
-app.use("/users", authenticationToken, usersController)
+
 app.use("/login", logInController)
-app.use("/logout", authenticationToken, logOutController)
+
 app.use("/auth", authenticationToken, auth);
+
+
+app.use("/employees", authenticationToken, userActions, employeesController)
+app.use("/departments", authenticationToken, userActions, departmentController)
+app.use("/shifts", authenticationToken, userActions, shiftsController)
+app.use("/users", authenticationToken, userActions, usersController)
+app.use("/logout", authenticationToken, logOutController)
 
 
 

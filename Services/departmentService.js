@@ -12,16 +12,16 @@ const getDepartments = async () => {
             const employeesDep = employees.filter(emp => emp.department_id == (dep.id)).map((emp) => {
                 return {
                     id: emp._id,
-                    name: emp.first_name + " " + emp.last_name ? emp.first_name + " " + emp.last_name : "No employee",
-                    department_id: emp.department_id
+                    name: `${emp.first_name} ${emp.last_name}`
 
                 }
             })
             return {
                 id: dep._id,
-                Department: dep.name ? dep.name : "No Department",
-                Manager: dep.manager && dep.manager.first_name && dep.manager.last_name ? dep.manager.first_name + " " + dep.manager.last_name : "No Manager",
-                Employees: employeesDep.length > 0 ? employeesDep : "No employees"
+                department: dep.name ? dep.name : "No Department",
+                managerId: dep.manager ? dep.manager._id : "No Manager",
+                managerName: dep.manager ? `${dep.manager.first_name} ${dep.manager.last_name}` : "No Manager",
+                employees: employeesDep.length > 0 ? employeesDep : "No employees"
 
             }
 

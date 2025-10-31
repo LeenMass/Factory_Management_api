@@ -57,6 +57,17 @@ router.post("/employeesShift", async (req, res) => {
     }
 
 });
+router.post("/employeeToshift", async (req, res) => {
+    const employeesShifts = req.body;
+    try {
+
+        const result = await shiftService.asignEmployeeToshift(employeesShifts);
+        res.json(result);
+    } catch (error) {
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+
+});
 
 
 

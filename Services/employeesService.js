@@ -16,7 +16,8 @@ const getEmployees = async (filters) => {
                     return {
                         id: employee._id,
                         department_id: employee.department_id?._id || "No Department",
-                        name: (employee.first_name && employee.last_name) ? `${employee.first_name} ${employee.last_name}` : "No employee",
+                        first_name: employee.first_name ? employee.first_name : "",
+                        last_name: employee.last_name ? employee.last_name : "",
                         Department: employee.department_id?.name || 'No Department',
                         shifts: shifts || []
                     };

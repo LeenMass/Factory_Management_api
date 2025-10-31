@@ -5,6 +5,9 @@ const Users = require("../Modules/usersModule");
 const getAllUsers = (filters) => {
     return Users.find(filters)
 }
+const findUserByName = (name) => {
+    return Users.findOne({ full_name: name })
+}
 const getUserById = (id) => {
     return Users.findById(id);
 };
@@ -15,4 +18,4 @@ const addUser = (userObj) => {
 }
 
 
-module.exports = { getAllUsers, getUserById, addUser }
+module.exports = { getAllUsers, getUserById, addUser, findUserByName }

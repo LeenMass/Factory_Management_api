@@ -51,6 +51,19 @@ const addEmployeesToshift = async (data) => {
         throw error;
     }
 }
+const asignEmployeeToshift = async (data) => {
+    try {
+
+        const result = await shiftsModule.updateOne(
+            { _id: data.shiftId },
+            { $addToSet: { employees: data.empId } }
+        );
+        return result;
+    } catch (error) {
+        console.error("Error adding employees to shift:", error);
+        throw error;
+    }
+}
 const removeEmployeeFromShift = async (employeesShifts) => {
     const shiftsDecuments = employeesShifts.map(({ shift_id, employees }) =>
         shiftsModule.updateOne(
@@ -63,4 +76,4 @@ const removeEmployeeFromShift = async (employeesShifts) => {
 }
 
 
-module.exports = { getShifts, addShiftToDB, getShift, updateShiftData, removeEmployeeFromShift, addEmployeesToshift }
+module.exports = { getShifts, addShiftToDB, getShift, updateShiftData, removeEmployeeFromShift, addEmployeesToshift, asignEmployeeToshift }
