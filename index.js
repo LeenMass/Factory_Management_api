@@ -34,14 +34,11 @@ app.use("/login", logInController)
 
 app.use("/auth", authenticationToken, auth);
 
-
 app.use("/employees", authenticationToken, userActions, employeesController)
 app.use("/departments", authenticationToken, userActions, departmentController)
 app.use("/shifts", authenticationToken, userActions, shiftsController)
 app.use("/users", authenticationToken, userActions, usersController)
 app.use("/logout", authenticationToken, logOutController)
-
-
 
 app.listen(PORT, () => {
     console.log(`app is listening at http://localhost:${PORT}`)
