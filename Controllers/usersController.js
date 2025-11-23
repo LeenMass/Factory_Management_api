@@ -29,5 +29,20 @@ router.post("/", async (req, res) => {
     const result = await userServices.addNewUser(user)
     res.json(result)
 })
+router.post("/actions", async (req, res) => {
+    try {
+        const result = await userServices.userAction(req.user.id);
+        if (result.remaining == 0) {
+            res.clearCookie('token', {
+                httpOnly: true,
+                sameSite: 'lax',
+                secure: false
+            });
+            return res.status(403).json({ message: result.message });
 
+        } res.json(result);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
 module.exports = router

@@ -11,7 +11,6 @@ require('dotenv').config();
 router.post("/", async (req, res) => {
     const users = await Users.getAllUsers({})
     const { username, email } = req.body;
-    console.log(req.body)
     const { data } = await axios.get('https://jsonplaceholder.typicode.com/users');
     const findUserInUsersApi = data.find(u => u.username === username && u.email === email);
 
@@ -22,7 +21,7 @@ router.post("/", async (req, res) => {
     const findUserInDB = users.find(e => e.full_name === findUserInUsersApi.name)
     if (!findUserInDB) {
         const user = {
-            full_name: findUserInUsersApi?.name, num_of_action: Math.floor(Math.random() * (15 - 3 + 1)) + 3
+            full_name: findUserInUsersApi?.name, num_of_action: Math.floor(Math.random() * (100 - 30 + 1)) + 30
         }
         await UsersService.addNewUser(user)
     }
