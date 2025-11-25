@@ -19,11 +19,13 @@ const readFile = () => {
 const getUsers = async () => {
     const users = await Users.getAllUsers({})
     const dataFile = readFile();
+    const today = new Date().toLocaleDateString("en-CA");
+
     const usersFinalData = users.map(user => {
         const entry = dataFile.actions.find(
-            e => e.user_id.toString() === user._id.toString() && e.date === new Date().toLocaleDateString("en-CA")
+            e => e.user_id.toString() === user._id.toString() && e.date === today
         );
-        return { ...user._doc, actionAllowed: entry.actionsAllowed }
+        return { ...user._doc, actionAllowed: entry ? entry.actionsAllowed : 0 }
     })
     return usersFinalData
 
@@ -39,7 +41,7 @@ const userAction = async (userId) => {
 
     const today = new Date().toLocaleDateString("en-CA");
     let userEntry = actionsData.actions.find(
-        (e) => e.user_id === userId && e.date === today
+        (e) => e.user_id.toString() === userId.toString() && e.date === today
     );
 
     if (!userEntry) {
