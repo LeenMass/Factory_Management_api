@@ -32,7 +32,6 @@ This project provides:
 - Add/Edit/Delete/View employees  
 - Assign employees to shifts and departments  
 - Filter employees by department  
-- Clickable links to Edit Employee and Edit Department pages  
 
 ### Departments
 - Add/Edit/Delete departments  
@@ -42,7 +41,7 @@ This project provides:
 ### Shifts
 - Create/Edit shifts  
 - Assign employees to shifts  
-- Shifts cannot be deleted  
+- delete employees from shift 
 
 ### Users
 - Pre-declared registered users  
@@ -52,22 +51,20 @@ This project provides:
 ### Authentication & Security
 - JWT-based authentication  
 - External API verification  
-- Role-based access and activity tracking  
-
 ---
 
 ## 🛠 Tech Stack
 
-Node.js | Express.js | MongoDB | Mongoose | JWT | JavaScript (ES6) | dotenv | HTML/CSS/JS (Frontend)
+Node.js | Express.js | MongoDB | Mongoose | JWT | JavaScript (ES6) | dotenv 
 
 ---
 
-## ⚙️ Quick Start
+## ⚙️ 
 
 1️⃣ Clone the repository  
 ```bash
-git clone https://github.com/yourname/factory-management-api.git
-cd factory-management-api
+git clone : https://github.com/LeenMass/Factory_Management_api
+cd Factory-Management-api
 ```
 
 2️⃣ Install dependencies  
@@ -85,12 +82,6 @@ Edit `.env` with your secrets and database connection.
 ```bash
 npm run dev
 ```
-
----
-
-## 📄 Documentation
-
-Full API reference, ERD diagram, setup instructions, and screenshots are available in the [`/docs`](./docs) folder.  
 
 ---
 
