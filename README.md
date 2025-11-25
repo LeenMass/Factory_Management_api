@@ -52,7 +52,7 @@ This project provides:
 - External API verification  
 ---
 
-## 🛠 Tech Stack
+## 🛠 Technologies
 
 Node.js | Express.js | MongoDB | Mongoose | JWT | JavaScript (ES6) | dotenv | HTML/CSS/JS (Frontend)
 
