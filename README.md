@@ -6,7 +6,7 @@
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript)
 ![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge)
 
-A **scalable and secure backend system** for managing **employees, departments, shifts**, and **user activity** in factories.  
+A **scalable and secure backend system** for managing **employees, departments, shifts**, and **user activity** in factory.
 Built with **Node.js, Express, MongoDB, and Mongoose**, featuring **JWT authentication** and integration with an **external users API** for validating registered users.
 
 ---
