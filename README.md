@@ -1,85 +1,68 @@
-# 🚀 Factory Management System API
+# 🚀 Factory Management System - Frontend
 
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js)
-![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express)
-![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb)
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript)
-![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge)
+![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge)
+![CSS](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge)
 
-A **full-featured backend system** for managing **employees, departments, shifts**, and **user activity** in a factory.  
-Built with **Node.js, Express, MongoDB, and Mongoose**, featuring **JWT authentication** and external API validation for registered users.
-
----
-
-## 📖 Overview
-
-This project provides:
-
-- Employee, Department, and Shift management  
-- JWT-based authentication verified via an external API  
-- Daily action limits per user, with automatic logout when exceeded  
-- Logging of every user action in JSON for auditing  
-- Filtering employees by department  
-- Clean **MVC architecture** for maintainability and scalability  
-
-> Each user has a limited number of daily actions. Exceeding the limit logs them out until the next day.
+A modern **frontend web application** for managing **employees, departments, and shifts** in a factory, with secure JWT login and daily user activity tracking.  
+Connects to the [Factory Management Backend API](https://github.com/LeenMass/Factory_Management_api).
 
 ---
 
-## ⭐ Key Features
+## 📖 Overview & Features
 
-### Employees
-- Add/Edit/Delete/View employees  
-- Assign employees to shifts and departments  
+This frontend provides:
+
+- User login with JWT authentication  
+- Add, edit, delete employees and departments  
+- Register employees to shifts, view and edit shifts  
 - Filter employees by department  
+- Track each user's daily actions with automatic logout  
+- Clean React component architecture  
 
-### Departments
-- Add/Edit/Delete departments  
-- Assign/reassign employees to departments  
-- View department manager and employee list  
+**Skills Demonstrated & Goals:**
 
-### Shifts
-- Create/Edit shifts  
-- Assign employees to shifts
-- delete employees from shift 
-
-### Users
-- Each action reduces the daily allowed actions count  
-- Automatic logout when daily limit is reached  
-
-### Authentication & Security
-- JWT-based authentication  
-- External API verification  
----
-
-## 🛠 Technologies
-
-Node.js | Express.js | MongoDB | Mongoose | JWT | JavaScript (ES6) | dotenv | HTML/CSS/JS (Frontend)
+- React.js state management and reusable components  
+- Integration with REST API using Axios  
+- Secure authentication implementation  
+- Planned enhancements: full dashboard, responsive UI, automated testing, improved UX  
 
 ---
 
-##  Installation
+## 🛠 Tech Stack
 
-1️⃣ Clone the repository  
-```bash
-git clone https://github.com/yourname/factory-management-api.git
-cd factory-management-api
-```
+React.js | JavaScript | Axios | CSS | HTML | Git / GitHub  
 
-2️⃣ Install dependencies  
+---
+
+## ⚙️ Quick Start
+
 ```bash
+# Clone the repository
+git clone https://github.com/LeenMass/Factory_Management_frontend.git
+cd Factory
+
+# Install dependencies
 npm install
-```
 
-3️⃣ Copy environment example and update variables  
-```bash
-cp .env.example .env
-```
-Edit `.env` with your secrets and database connection.
-
-4️⃣ Start the server  
-```bash
+# Start the development server
 npm run dev
+```
+
+The frontend runs at [http://localhost:3000](http://localhost:3000).  
+
+---
+
+## 📂 Project Structure
+
+```
+Factory/
+├── src/
+│   ├── components/   # Reusable UI components
+│   ├── pages/        # Application pages
+│   └── assets/       # CSS & assets
+└── package.json
 ```
 
 ---
