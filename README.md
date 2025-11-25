@@ -1,69 +1,96 @@
-# 🚀 Factory Management System - Frontend
+# 🚀 Factory Management System API
 
-![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js)
+![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript)
-![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge)
-![CSS](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge)
+![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge)
 
-A modern **frontend web application** for managing **employees, departments, and shifts** in a factory, with secure JWT login and daily user activity tracking.  
-Connects to the [Factory Management Backend API](https://github.com/LeenMass/Factory_Management_api).
+A **full-featured backend system** for managing **employees, departments, shifts**, and **user activity** in a factory.  
+Built with **Node.js, Express, MongoDB, and Mongoose**, featuring **JWT authentication** and external API validation for registered users.
 
 ---
 
-## 📖 Overview & Features
+## 📖 Overview
 
-This frontend provides:
+This project provides:
 
-- User login with JWT authentication  
-- Add, edit, delete employees and departments  
-- Register employees to shifts, view and edit shifts  
+- Employee, Department, and Shift management  
+- JWT-based authentication verified via an external API  
+- Daily action limits per user, with automatic logout when exceeded  
+- Logging of every user action in JSON for auditing  
+- Filtering employees by department  
+- Clean **MVC architecture** for maintainability and scalability  
+
+> Each user has a limited number of daily actions. Exceeding the limit logs them out until the next day.
+
+---
+
+## ⭐ Key Features
+
+### Employees
+- Add/Edit/Delete/View employees  
+- Assign employees to shifts and departments  
 - Filter employees by department  
-- Track each user's daily actions with automatic logout  
-- Clean React component architecture  
+- Clickable links to Edit Employee and Edit Department pages  
 
-**Skills Demonstrated & Goals:**
+### Departments
+- Add/Edit/Delete departments  
+- Assign/reassign employees to departments  
+- View department manager and employee list  
 
-- React.js state management and reusable components  
-- Integration with REST API using Axios  
-- Secure authentication implementation  
-- Planned enhancements: full dashboard, responsive UI, automated testing, improved UX  
+### Shifts
+- Create/Edit shifts  
+- Assign employees to shifts  
+- Shifts cannot be deleted  
+
+### Users
+- Pre-declared registered users  
+- Each action reduces the daily allowed actions count  
+- Automatic logout when daily limit is reached  
+
+### Authentication & Security
+- JWT-based authentication  
+- External API verification  
+- Role-based access and activity tracking  
 
 ---
 
 ## 🛠 Tech Stack
 
-React.js | JavaScript | Axios | CSS | HTML | Git / GitHub  
+Node.js | Express.js | MongoDB | Mongoose | JWT | JavaScript (ES6) | dotenv | HTML/CSS/JS (Frontend)
 
 ---
 
 ## ⚙️ Quick Start
 
+1️⃣ Clone the repository  
 ```bash
-# Clone the repository
-git clone https://github.com/LeenMass/Factory_Management_frontend.git
-cd Factory
+git clone https://github.com/yourname/factory-management-api.git
+cd factory-management-api
+```
 
-# Install dependencies
+2️⃣ Install dependencies  
+```bash
 npm install
+```
 
-# Start the development server
+3️⃣ Copy environment example and update variables  
+```bash
+cp .env.example .env
+```
+Edit `.env` with your secrets and database connection.
+
+4️⃣ Start the server  
+```bash
 npm run dev
 ```
 
-The frontend runs at [http://localhost:3000](http://localhost:3000).  
-
 ---
 
-## 📂 Project Structure
+## 📄 Documentation
 
-```
-Factory/
-├── src/
-│   ├── components/   # Reusable UI components
-│   ├── pages/        # Application pages
-│   └── assets/       # CSS & assets
-└── package.json
-```
+Full API reference, ERD diagram, setup instructions, and screenshots are available in the [`/docs`](./docs) folder.  
 
 ---
 
