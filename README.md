@@ -85,7 +85,7 @@ npm run dev
 
 ---
 
-**Author:** Leen Massarwy
+## 👨‍💻Author:**Leen Massarwy**
 
 ## 📄 License
 
