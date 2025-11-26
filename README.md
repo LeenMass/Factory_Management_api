@@ -25,7 +25,11 @@ This project provides:
 > Each user has a limited number of daily actions. Exceeding the limit logs them out until the next day.
 
 ---
+## ⚙️ Technologies
 
+Node.js | Express.js | MongoDB | Mongoose | JWT | JavaScript (ES6) | dotenv 
+
+---
 ## ⭐ Key Features
 
 ### Employees
@@ -53,13 +57,8 @@ This project provides:
 - External API verification  
 ---
 
-## 🛠 Tech Stack
 
-Node.js | Express.js | MongoDB | Mongoose | JWT | JavaScript (ES6) | dotenv 
-
----
-
-## ⚙️ 
+## 🛠 Installation & Running
 
 1️⃣ Clone the repository  
 ```bash
