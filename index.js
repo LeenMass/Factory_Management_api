@@ -38,7 +38,6 @@ app.use("/shifts", shiftsController);
 app.use("/users", usersController);
 
 app.use("/logout", logOutController);
-
 app.listen(PORT, () => {
     console.log(`App is listening at http://localhost:${PORT}`);
 });
