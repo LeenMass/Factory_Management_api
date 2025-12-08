@@ -47,7 +47,7 @@ const addEmployeesToshift = async (data) => {
         );
         return result;
     } catch (error) {
-        console.error("Error adding employees to shift:", error);
+        console.error("Error while adding employees to shift:", error);
         throw error;
     }
 }
@@ -60,8 +60,7 @@ const asignEmployeeToshift = async (data) => {
         );
         return result;
     } catch (error) {
-        console.error("Error adding employees to shift:", error);
-        throw error;
+        throw new Error("An error occurred while adding employees to the shift")
     }
 }
 const removeEmployeeFromShift = async (employeesShifts) => {
