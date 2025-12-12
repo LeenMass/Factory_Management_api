@@ -11,7 +11,6 @@ const shiftsController = require("./Controllers/shiftsController");
 const usersController = require("./Controllers/usersController");
 const logInController = require("./Controllers/loginController");
 const logOutController = require("./Controllers/logout");
-const authController = require("./Controllers/authin");
 const authenticationToken = require("./auth");
 
 db();
@@ -30,7 +29,6 @@ app.use((req, res, next) => {
 });
 
 app.use("/login", logInController);
-app.use("/auth", authenticationToken, authController);
 app.use(authenticationToken)
 app.use("/employees", employeesController);
 app.use("/departments", departmentController);
