@@ -29,7 +29,6 @@ app.use((req, res, next) => {
 });
 
 app.use("/login", logInController);
-app.use(authenticationToken)
 app.use("/employees", authenticationToken, employeesController);
 app.use("/departments", authenticationToken, departmentController);
 app.use("/shifts", authenticationToken, shiftsController);
