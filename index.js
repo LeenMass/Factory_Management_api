@@ -23,10 +23,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.json());
-app.use((req, res, next) => {
-    res.setHeader("Cache-Control", "no-store");
-    next();
-});
+
 
 app.use("/login", logInController);
 app.use("/employees", authenticationToken, employeesController);
