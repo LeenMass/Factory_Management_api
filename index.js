@@ -30,10 +30,10 @@ app.use((req, res, next) => {
 
 app.use("/login", logInController);
 app.use(authenticationToken)
-app.use("/employees", employeesController);
-app.use("/departments", departmentController);
-app.use("/shifts", shiftsController);
-app.use("/users", usersController);
+app.use("/employees", authenticationToken, employeesController);
+app.use("/departments", authenticationToken, departmentController);
+app.use("/shifts", authenticationToken, shiftsController);
+app.use("/users", authenticationToken, usersController);
 
 app.use("/logout", logOutController);
 app.listen(PORT, () => {
